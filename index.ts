@@ -62,7 +62,12 @@ let apiSvc = new awsx.ecs.FargateService("api-service", {
         containers: {
             app: {
                 image: image_api,
-                memory: 512
+                memory: 512,
+                portMappings: [{
+                    hostPort      : 80,
+                    containerPort : 8080,
+                    protocol      : "tcp",
+                  }]
             }
         }
     },
@@ -77,7 +82,12 @@ let webSvc = new awsx.ecs.FargateService("web-service", {
         containers: {
             app: {
                 image: image_web,
-                memory: 512
+                memory: 512,
+                portMappings: [{
+                    hostPort      : 80,
+                    containerPort : 8080,
+                    protocol      : "tcp",
+                  }]
                 }
             }
         },
