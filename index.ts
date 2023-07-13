@@ -9,9 +9,8 @@ const repo = new aws.ecr.Repository("my-repo", {
     forceDelete: true,
 });
 
-
-
 // Compute registry info (creds and endpoint)
+
 let registryInfo = repo.registryId.apply(async registryId => {
     let credentials = await aws.ecr.getCredentials({registryId: registryId});
     let decodedCredentials = Buffer.from(credentials.authorizationToken, "base64").toString();
